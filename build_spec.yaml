@@ -1,0 +1,19 @@
+version: 1.0
+component: deployment
+env: 
+  variables: 
+    stage: "BUILD"
+    TOP: ${CUSTOM_TOP}
+steps: 
+  - stepType: Command
+    name: Validate Variables
+    command: echo "Version = ${stage} , CUSTOM_TOP = ${TOP}"
+    timeoutInSeconds: 60
+  - stepType: Command
+    name: Test_Step
+    command: echo "Deployment Started"
+    timeoutInSeconds: 600
+  - stepType: Command
+    name: Run_Python
+    command: python /u01/buildsrv/EBSHOME/Automation_Scripts/Demo.py BUILD 5663 custom_top repo_path 
+    timeoutInSeconds: 600
